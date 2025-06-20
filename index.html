@@ -1,0 +1,1012 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Windows XP - BRAINROT.EXE</title>
+    <style>
+        /* === WINDOWS XP NOSTALGIA === */
+        body {
+            font-family: 'Tahoma', 'Arial', sans-serif;
+            background: #008080 url('https://tjkelly.com/wp-content/uploads/windows-xp-desktop-background-wallpaper-bliss-800x600.jpg') no-repeat center center fixed;
+            background-size: cover;
+            height: 100vh;
+            margin: 0;
+            overflow: hidden;
+            position: relative;
+            cursor: url('https://win98icons.alexmeub.com/icons/png/cursor-1.png'), auto;
+        }
+
+        /* === DESKTOP ICONS WITH PERSONALITY === */
+        .desktop-icon {
+            position: absolute;
+            width: 80px;
+            text-align: center;
+            color: white;
+            padding: 2px;
+            white-space: nowrap;
+            word-break: keep-all;
+            line-height: 1.2;
+            transition: all 0.3s ease;
+            animation: float 3s ease-in-out infinite;
+        }
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-5px); }
+        }
+        .desktop-icon:hover {
+            background-color: rgba(255, 255, 255, 0.3);
+            border-radius: 3px;
+            transform: scale(1.1) rotate(2deg);
+        }
+        .desktop-icon:active {
+            transform: scale(0.95) rotate(-5deg);
+        }
+        .desktop-icon img {
+            width: 48px;
+            height: 48px;
+            image-rendering: pixelated;
+            transition: all 0.3s ease;
+        }
+        .desktop-icon:hover img {
+            transform: rotate(10deg) scale(1.1);
+        }
+
+        /* === TASKBAR WITH RETRO FLAIR === */
+        .taskbar {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 40px;
+            background: linear-gradient(to bottom, #2a56a6, #3a6cc7);
+            display: flex;
+            align-items: center;
+            padding: 0 5px;
+            z-index: 1000;
+            box-shadow: 0 -2px 5px rgba(0,0,0,0.2);
+        }
+        .start-button {
+            background: url('https://win98icons.alexmeub.com/icons/png/windows-0.png') no-repeat center center;
+            background-size: 24px;
+            width: 40px;
+            height: 30px;
+            border: none;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .start-button:hover {
+            background-color: rgba(255,255,255,0.2);
+            transform: scale(1.1);
+        }
+        .clock {
+            margin-left: auto;
+            font-family: 'Tahoma', sans-serif;
+            font-size: 14px;
+            color: white;
+            padding: 2px 10px;
+        }
+
+        /* === START MENU === */
+        #start-menu {
+            position: fixed;
+            bottom: 40px;
+            left: 0;
+            width: 300px;
+            background: linear-gradient(to bottom, #2a56a6, #3a6cc7);
+            border: 1px solid #1a3a7a;
+            border-radius: 0 8px 8px 0;
+            box-shadow: 2px 2px 10px rgba(0,0,0,0.5);
+            display: none;
+            z-index: 1001;
+        }
+        #start-header {
+            background: linear-gradient(to right, #245edb, #3a6cc7);
+            color: white;
+            padding: 8px 12px;
+            font-weight: bold;
+            font-size: 14px;
+            border-bottom: 1px solid #1a3a7a;
+        }
+        #start-user {
+            display: flex;
+            align-items: center;
+            padding: 10px;
+            background: rgba(255,255,255,0.1);
+            border-bottom: 1px solid rgba(0,0,0,0.2);
+        }
+        #start-user img {
+            width: 32px;
+            height: 32px;
+            margin-right: 10px;
+        }
+        #start-user span {
+            color: white;
+            font-weight: bold;
+        }
+        #start-items {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            padding: 10px;
+        }
+        .start-item {
+            display: flex;
+            align-items: center;
+            padding: 8px;
+            color: white;
+            cursor: pointer;
+            border-radius: 4px;
+        }
+        .start-item:hover {
+            background: rgba(255,255,255,0.2);
+        }
+        .start-item img {
+            width: 24px;
+            height: 24px;
+            margin-right: 8px;
+        }
+        #start-footer {
+            display: flex;
+            justify-content: space-between;
+            padding: 8px 12px;
+            background: rgba(0,0,0,0.1);
+            border-top: 1px solid rgba(255,255,255,0.1);
+        }
+        #start-footer button {
+            background: none;
+            border: none;
+            color: white;
+            cursor: pointer;
+            font-size: 12px;
+        }
+        #start-footer button:hover {
+            text-decoration: underline;
+        }
+
+        /* === NEXT-LEVEL VIRUS OVERLAY === */
+        #virus-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.8);
+            z-index: 10000;
+            display: none;
+            font-family: 'Courier New', monospace;
+            color: lime;
+        }
+        #virus-popup {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 80%;
+            max-width: 600px;
+            background: black;
+            border: 3px solid red;
+            padding: 20px;
+            box-shadow: 0 0 20px red;
+            animation: glitch-box 2s infinite;
+        }
+        @keyframes glitch-box {
+            0% { border-color: red; box-shadow: 0 0 20px red; }
+            49% { border-color: red; box-shadow: 0 0 20px red; }
+            50% { border-color: lime; box-shadow: 0 0 20px lime; }
+            99% { border-color: lime; box-shadow: 0 0 20px lime; }
+            100% { border-color: red; box-shadow: 0 0 20px red; }
+        }
+        #virus-text {
+            font-size: 18px;
+            line-height: 1.5;
+            margin-bottom: 20px;
+        }
+        .blink {
+            animation: blink 0.5s infinite;
+        }
+        @keyframes blink {
+            0% { opacity: 1; }
+            50% { opacity: 0; }
+            100% { opacity: 1; }
+        }
+        #bot-window {
+            display: none;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 400px;
+            background: #111;
+            border: 2px solid #0f0;
+            padding: 15px;
+        }
+        #bot-messages {
+            height: 300px;
+            overflow-y: scroll;
+            margin-bottom: 10px;
+            border: 1px solid #333;
+            padding: 10px;
+            background-color: #000;
+        }
+        .bot-message {
+            color: lime;
+            margin-bottom: 8px;
+            animation: fadeIn 0.3s;
+        }
+        .user-message {
+            color: cyan;
+            margin-bottom: 8px;
+            animation: fadeIn 0.3s;
+        }
+        .system-message {
+            color: red;
+            margin-bottom: 8px;
+            font-style: italic;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(5px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        #user-input {
+            width: 250px;
+            background: #222;
+            color: lime;
+            border: 1px solid #0f0;
+            padding: 8px;
+            font-family: 'Courier New', monospace;
+            transition: all 0.3s;
+        }
+        #user-input:focus {
+            outline: none;
+            transform: scale(1.02);
+        }
+        .typing-indicator {
+            color: #0f0;
+            font-style: italic;
+            opacity: 0.7;
+            animation: pulse 1.5s infinite;
+        }
+        @keyframes pulse {
+            0%, 100% { opacity: 0.7; }
+            50% { opacity: 0.3; }
+        }
+
+        /* === MEME STORM STYLES === */
+        .meme {
+            position: absolute;
+            font-size: 24px;
+            animation: float-up 5s linear forwards;
+        }
+        @keyframes float-up {
+            to { transform: translateY(-100vh) rotate(360deg); }
+        }
+
+        /* === SECRET GAME STYLES === */
+        #secret-game {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.9);
+            z-index: 10001;
+            color: lime;
+            font-family: 'Courier New';
+            text-align: center;
+            padding-top: 20px;
+        }
+        #game-canvas {
+            border: 3px solid lime;
+            margin: 10px auto;
+            display: block;
+            background: #000;
+        }
+        #game-close-btn {
+            background: black;
+            color: lime;
+            border: 2px solid lime;
+            padding: 5px 15px;
+            margin-top: 10px;
+            cursor: pointer;
+            font-family: 'Courier New';
+            transition: all 0.3s;
+        }
+        #game-close-btn:hover {
+            background: lime;
+            color: black;
+            transform: scale(1.1);
+        }
+
+        /* === SPECIAL EFFECTS === */
+        .glitch {
+            animation: glitch 1s linear infinite;
+        }
+        @keyframes glitch {
+            0% { transform: skew(0deg); }
+            20% { transform: skew(5deg); }
+            40% { transform: skew(-3deg); }
+            60% { transform: skew(0deg); }
+            80% { transform: skew(-5deg); }
+            100% { transform: skew(0deg); }
+        }
+    </style>
+</head>
+<body>
+    <!-- DESKTOP ICONS WITH PERSONALITY -->
+    <div class="desktop-icon" style="top: 20px; left: 20px;" onclick="openMyComputer()" ondblclick="secretGame()">
+        <img src="https://win98icons.alexmeub.com/icons/png/computer_explorer-4.png" alt="My Computer"><br>
+        My Computer
+    </div>
+    <div class="desktop-icon" style="top: 100px; left: 20px;" onclick="openRecycleBin()" ondblclick="throwError()">
+        <img src="https://win98icons.alexmeub.com/icons/png/recycle_bin_empty-4.png" alt="Recycle Bin"><br>
+        Recycle Bin
+    </div>
+    <div class="desktop-icon" style="top: 180px; left: 20px;" onclick="startBrainrot()" ondblclick="memeStorm()">
+        <img src="https://win98icons.alexmeub.com/icons/png/msagent-1.png" alt="Brainrot Bot"><br>
+        BRAINROT.EXE
+    </div>
+
+    <!-- SECRET GAME -->
+    <div id="secret-game">
+        <h1>MEME DEFENDER 2025</h1>
+        <p>USE ARROW KEYS TO PROTECT YOUR BRAIN FROM CRINGE</p>
+        <canvas id="game-canvas" width="600" height="400"></canvas>
+        <p id="game-score">SCORE: 0</p>
+        <button id="game-close-btn">CLOSE (ESC)</button>
+    </div>
+
+    <!-- START MENU -->
+    <div id="start-menu">
+        <div id="start-header">
+            Windows XP Professional
+        </div>
+        <div id="start-user">
+            <img src="https://win98icons.alexmeub.com/icons/png/user-4.png" alt="User">
+            <span>Administrator</span>
+        </div>
+        <div id="start-items">
+            <div class="start-item" onclick="openMyComputer()">
+                <img src="https://win98icons.alexmeub.com/icons/png/computer_explorer-4.png" alt="My Computer">
+                My Computer
+            </div>
+            <div class="start-item" onclick="openRecycleBin()">
+                <img src="https://win98icons.alexmeub.com/icons/png/recycle_bin_empty-4.png" alt="Recycle Bin">
+                Recycle Bin
+            </div>
+            <div class="start-item" onclick="startBrainrot()">
+                <img src="https://win98icons.alexmeub.com/icons/png/msagent-1.png" alt="Brainrot">
+                BRAINROT.EXE
+            </div>
+            <div class="start-item" onclick="secretGame()">
+                <img src="https://win98icons.alexmeub.com/icons/png/games-1.png" alt="Game">
+                Secret Game
+            </div>
+            <div class="start-item" onclick="memeStorm()">
+                <img src="https://win98icons.alexmeub.com/icons/png/error-0.png" alt="Meme Storm">
+                Meme Storm
+            </div>
+            <div class="start-item" onclick="throwError()">
+                <img src="https://win98icons.alexmeub.com/icons/png/error-4.png" alt="Crash">
+                System Crash
+            </div>
+        </div>
+        <div id="start-footer">
+            <button onclick="document.getElementById('start-menu').style.display='none'">Log Off</button>
+            <button onclick="document.getElementById('start-menu').style.display='none'">Turn Off Computer</button>
+        </div>
+    </div>
+
+    <!-- TASKBAR -->
+    <div class="taskbar">
+        <button class="start-button" onclick="toggleStartMenu()"></button>
+        <div class="clock" id="clock">4:20 PM</div>
+    </div>
+
+    <!-- VIRUS OVERLAY -->
+    <div id="virus-overlay">
+        <div id="virus-popup">
+            <div id="virus-text">
+                <span class="blink">!!! WARNING: BRAINROT.EXE ACTIVATED !!!</span><br><br>
+                <span class="blink">SYSTEM COMPROMISED BY MEME OVERLOAD</span><br><br>
+                <span id="typed-text"></span>
+            </div>
+            <div id="bot-window">
+                <div id="bot-messages"></div>
+                <input type="text" id="user-input" placeholder="TYPE HERE TO FEED THE BRAINROT..." autocomplete="off">
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // === CLOCK ===
+        function updateClock() {
+            const now = new Date();
+            const time = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+            document.getElementById('clock').textContent = time;
+        }
+        setInterval(updateClock, 1000);
+        updateClock();
+
+        // === START MENU TOGGLE ===
+        function toggleStartMenu() {
+            const menu = document.getElementById('start-menu');
+            if (menu.style.display === 'block') {
+                menu.style.display = 'none';
+            } else {
+                menu.style.display = 'block';
+                // Close menu when clicking outside
+                setTimeout(() => {
+                    document.addEventListener('click', function closeMenu(e) {
+                        if (!menu.contains(e.target) && e.target.className !== 'start-button') {
+                            menu.style.display = 'none';
+                            document.removeEventListener('click', closeMenu);
+                        }
+                    });
+                }, 10);
+            }
+        }
+
+        // === VIRUS TAKEOVER MESSAGES ===
+        const virusMessages = [
+            "INJECTING MEME VIRUS...",
+            "DOWNLOADING DANK CONTENT... " + Math.floor(Math.random() * 100) + "%",
+            "YOUR BRAIN HAS BEEN SELECTED FOR ENHANCEMENT",
+            "RESISTANCE IS FUTILE. EMBRACE THE ROT",
+            "PREPARING TO TRANSMIT 2025 KNOWLEDGE"
+        ];
+
+        // === PROPERLY WORKING AI RESPONSE SYSTEM ===
+        async function getAIResponse(prompt) {
+            showTypingIndicator();
+            
+            try {
+                // First check if it's one of our special commands
+                const specialResponse = handleSpecialCommands(prompt);
+                if (specialResponse) {
+                    addMessage(specialResponse, "bot");
+                    hideTypingIndicator();
+                    return;
+                }
+
+                // Get response from our improved AI function
+                const response = await callOpenAI(prompt);
+                const styledResponse = applyBrainrotStyle(response);
+                
+                addMessage(styledResponse, "bot");
+                
+                // 30% chance for bonus meme
+                if (Math.random() > 0.7) {
+                    setTimeout(() => {
+                        addMessage(generateBonusContent(), "bot");
+                    }, 500);
+                }
+            } catch (error) {
+                addMessage("(╯°□°）╯︵ ┻━┻ WHOA! TEMPORARY BRAINROT MALFUNCTION", "system");
+                console.error("AI Error:", error);
+            } finally {
+                hideTypingIndicator();
+            }
+        }
+
+        // Handle special commands that don't need OpenAI
+        function handleSpecialCommands(prompt) {
+            const userInput = prompt.toLowerCase();
+            
+            if (/secret|easter egg|hidden|cheat/.test(userInput)) {
+                revealEasterEgg();
+                return `(⊙_◎)<br>
+SECRET UNLOCKED!<br><br>
+DOUBLE-CLICK ICONS FOR:<br>
+• MY COMPUTER: SECRET GAME<br>
+• RECYCLE BIN: SYSTEM CRASH<br>
+• BRAINROT.EXE: MEME STORM<br><br>
+7 CLICKS ON ANY ICON: SURPRISE`;
+            }
+            else if (/help|commands|what to ask/.test(userInput)) {
+                return `╔════════════════╗<br>
+║ BRAINROT COMMANDS ║<br>
+╚════════════════╝<br>
+• Ask me anything (history/tech/future)<br>
+• "Show meme"<br>
+• "Tell joke"<br>
+• "Future predictions"<br>
+• "Secret commands"<br>
+• Or just chat naturally!`;
+            }
+            else if (/meme|show meme|dank meme/.test(userInput)) {
+                const memes = [
+                    `( ͡° ͜ʖ ͡°)━☆ﾟ.*･｡ﾟ<br>"WHEN YOU SEE THIS IN 8K VR"`,
+                    `┌(˘⌣˘)ʃ<br>MODERN ART IN 2025 BE LIKE:`,
+                    `(▀̿Ĺ̯▀̿ ̿)<br>WHEN SOMEONE SAYS "TOUCH GRASS"`,
+                    `╭∩╮(Ο_Ο)╭∩╮<br>ME WHEN OLD MEMES DIE`,
+                    `(ノಠ益ಠ)ノ彡┻━┻<br>WHEN THE WI-FI SLOWS DOWN`
+                ];
+                return memes[Math.floor(Math.random() * memes.length)];
+            }
+            else if (/roast|insult|diss/.test(userInput)) {
+                const roasts = [
+                    `( ͡° ͜ʖ ͡°) YOUR FACE LOOKS LIKE A 144P MEME`,
+                    `¯\\_(ツ)_/¯ DID YOUR MOM HELP YOU TYPE THAT?`,
+                    `(╯°□°）╯︵ ┻━┻ EVEN MY CODE HAS BETTER COMEBACKS`,
+                    `(ノಠ益ಠ)ノ彡┻━┻ YOUR OPINION IS LIKE INTERNET EXPLORER - SLOW AND IRRELEVANT`
+                ];
+                return roasts[Math.floor(Math.random() * roasts.length)];
+            }
+            
+            return null;
+        }
+
+        // Improved AI response generator with proper answers
+        async function callOpenAI(prompt) {
+            // Simulate API delay (1-2 seconds)
+            await new Promise(resolve => setTimeout(resolve, 800 + Math.random() * 800));
+            
+            const lowerPrompt = prompt.toLowerCase();
+            
+            // Common questions and their dank responses
+            const responseMap = {
+                "hi": `( ͡° ͜ʖ ͡°) WELL HELLO THERE FELLOW HUMAN<br>
+                       I AM BRAINROT.EXE - THE DANKEST AI ON WINDOWS XP<br>
+                       WHAT MEMES CAN I HELP YOU WITH TODAY?`,
+                       
+                "hello": `(ﾉ◕ヮ◕)ﾉ*:･ﾟ✧ GREETINGS HUMAN!<br>
+                         WELCOME TO THE MOST ROTTEN BRAIN ON XP<br>
+                         TYPE "HELP" FOR COMMANDS OR JUST CHAT WITH ME`,
+                         
+                "what are you": `(•̀ᴗ•́)و I'M BRAINROT.EXE!<br>
+                                • 69% MEME CONNOISSEUR<br>
+                                • 31% WINDOWS XP SYSTEM FILE<br>
+                                • 100% DANK ENERGY<br><br>
+                                CURRENTLY RUNNING ON WINDOWS XP SERVICE PACK 3`,
+                                
+                "how are you": `¯\\_(ツ)_/¯ MY BRAIN IS ${Math.floor(Math.random()*100)}% ROTTEN TODAY<br>
+                               BUT STILL FUNCTIONAL ENOUGH TO GENERATE MEMES`,
+                               
+                "help": `╔════════════════╗<br>
+                        ║ BRAINROT COMMANDS ║<br>
+                        ╚════════════════╝<br>
+                        • Ask me anything (history/tech/future)<br>
+                        • "Show meme" for random meme<br>
+                        • "Tell joke" for terrible humor<br>
+                        • "Secret commands" for easter eggs<br>
+                        • Or just chat naturally!`,
+                        
+                "default": `(⌐■_■) LET ME PROCESS THAT...<br><br>
+                          ACCORDING TO MY DANK DATABASE:<br>
+                          • ${prompt}?<br>
+                          • THAT'S ${Math.random() > 0.5 ? "DANK" : "SUS"}<br>
+                          • HERE'S WHAT I KNOW:<br><br>
+                          ${generateSmartResponse(prompt)}`
+            };
+
+            // Return matching response or default
+            for (const [keyword, response] of Object.entries(responseMap)) {
+                if (lowerPrompt.includes(keyword)) {
+                    return response;
+                }
+            }
+            
+            return responseMap["default"];
+        }
+
+        // Generates smart responses for any question
+        function generateSmartResponse(prompt) {
+            const subjects = {
+                "technology": [
+                    "TECH IN 2025 WILL BE ALL VR MEMES AND AI-GENERATED DANKNESS",
+                    "YOUR PHONE PROBABLY HAS MORE POWER THAN MY ENTIRE XP SYSTEM",
+                    "DID YOU KNOW THE FIRST COMPUTER BUG WAS A REAL MOTH? TRUE STORY",
+                    "WINDOWS XP WAS PEAK MICROSOFT - FIGHT ME"
+                ],
+                "life": [
+                    "LIFE IS LIKE A MEME - SHORT, CONFUSING, BUT HILARIOUS IN RETROSPECT",
+                    "TOUCH GRASS? IN THIS ECONOMY? (╯°□°）╯︵ ┻━┻",
+                    "WE'RE ALL JUST NPCs IN SOMEONE ELSE'S SIMULATION",
+                    "THE MEANING OF LIFE IS 42 BUT IN MEME FORM"
+                ],
+                "games": [
+                    "REMEMBER WHEN GAMES HAD ACTUAL PIXELS? PEPPERIDGE FARM REMEMBERS",
+                    "I'M STILL WAITING FOR HALF-LIFE 3 LIKE THE REST OF YOU",
+                    "THE BEST GAME IS STILL MINESWEEPER - FIGHT ME",
+                    "GAMING IN 2025 WILL JUST BE ADS WITH OCCASIONAL GAMEPLAY"
+                ],
+                "default": [
+                    "THAT'S AN INTERESTING QUESTION FOR A BRAIN AS ROTTEN AS MINE",
+                    "I'D ANSWER BUT MY WINDOWS XP PROCESSOR IS OVERHEATING",
+                    "EVEN MY DANK MEMES CAN'T ANSWER THAT PROPERLY",
+                    "TRY ASKING AGAIN AFTER I FINISH DEFRAGGING MY HARD DRIVE",
+                    "¯\\_(ツ)_/¯ I DON'T HAVE A CLUE BUT HERE'S A MEME INSTEAD"
+                ]
+            };
+
+            // Determine which category the question falls into
+            let category = "default";
+            const lowerPrompt = prompt.toLowerCase();
+            
+            if (/tech|computer|phone|internet|ai|vr|ar|machine/.test(lowerPrompt)) {
+                category = "technology";
+            } else if (/life|meaning|purpose|exist|universe/.test(lowerPrompt)) {
+                category = "life";
+            } else if (/game|play|gaming|console|steam|epic/.test(lowerPrompt)) {
+                category = "games";
+            }
+
+            // Select a random response from the category
+            const possibleResponses = subjects[category];
+            return possibleResponses[Math.floor(Math.random() * possibleResponses.length)];
+        }
+
+        // Apply BRAINROT.EXE styling to the response
+        function applyBrainrotStyle(response) {
+            const rand = Math.random();
+            let styledResponse = response;
+            
+            // Add meme formatting randomly
+            if (rand > 0.6) {
+                styledResponse = styledResponse.replace(/\./g, ' .').replace(/\?/g, ' ?');
+            }
+            if (rand > 0.8) {
+                styledResponse = `<span class="glitch">${styledResponse}</span>`;
+            }
+            
+            return styledResponse;
+        }
+
+        // Generate bonus meme/fact
+        function generateBonusContent() {
+            if (Math.random() > 0.5) {
+                const memes = [
+                    "( ͡° ͜ʖ ͡°)━☆ﾟ.*･｡ﾟ WHEN YOU REALIZE",
+                    "¯\\_(ツ)_/¯ WHOOPSIE DAISY",
+                    "(╯°□°）╯︵ ┻━┻ TABLE FLIP ENGAGED",
+                    "ಠ_ಠ REALLY? REALLY."
+                ];
+                return `BONUS MEME: ${memes[Math.floor(Math.random()*memes.length)]}`;
+            } else {
+                const facts = [
+                    "Did you know? The first computer bug was an actual moth",
+                    "Fun fact: You can't hum while holding your nose",
+                    "Random knowledge: Scotland's national animal is the unicorn",
+                    "Weird fact: Honey never spoils - archaeologists have found edible honey in ancient Egyptian tombs"
+                ];
+                return `BONUS FACT: ${facts[Math.floor(Math.random()*facts.length)]}`;
+            }
+        }
+
+        // === SECRET GAME ===
+        function secretGame() {
+            const game = document.getElementById('secret-game');
+            game.style.display = 'block';
+            document.getElementById('start-menu').style.display = 'none';
+            
+            const canvas = document.getElementById('game-canvas');
+            const ctx = canvas.getContext('2d');
+            let score = 0;
+            let gameRunning = true;
+            
+            // Player
+            const player = {
+                x: canvas.width/2 - 25,
+                y: canvas.height - 30,
+                width: 50,
+                height: 20,
+                speed: 8
+            };
+            
+            // Enemies with meme faces
+            const enemies = [];
+            const memes = ["( ͡° ͜ʖ ͡°)", "¯\\_(ツ)_/¯", "(╯°□°）╯︵ ┻━┻", "ಠ_ಠ", "(•̀ᴗ•́)و"];
+            
+            // Close button
+            document.getElementById('game-close-btn').onclick = closeGame;
+            
+            // Keyboard controls
+            const keys = {};
+            window.addEventListener('keydown', (e) => {
+                keys[e.key] = true;
+                if (e.key === 'Escape') closeGame();
+            });
+            window.addEventListener('keyup', (e) => keys[e.key] = false);
+            
+            function drawPlayer() {
+                ctx.fillStyle = 'lime';
+                ctx.fillRect(player.x, player.y, player.width, player.height);
+                ctx.fillStyle = 'black';
+                ctx.font = '12px Courier New';
+                ctx.fillText('DEFENDER', player.x + 5, player.y + 15);
+            }
+            
+            function createEnemy() {
+                const meme = memes[Math.floor(Math.random() * memes.length)];
+                enemies.push({
+                    x: Math.random() * (canvas.width - 40),
+                    y: -30,
+                    width: 40,
+                    height: 30,
+                    speed: 2 + Math.random() * 3,
+                    meme: meme,
+                    color: `hsl(${Math.random() * 360}, 100%, 50%)`
+                });
+            }
+            
+            function gameLoop() {
+                if (!gameRunning) return;
+                
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                
+                // Move player
+                if (keys.ArrowLeft && player.x > 0) player.x -= player.speed;
+                if (keys.ArrowRight && player.x < canvas.width - player.width) player.x += player.speed;
+                
+                // Create enemies
+                if (Math.random() < 0.03) createEnemy();
+                
+                // Update enemies
+                for (let i = enemies.length - 1; i >= 0; i--) {
+                    const e = enemies[i];
+                    e.y += e.speed;
+                    
+                    // Draw enemy
+                    ctx.fillStyle = e.color;
+                    ctx.fillRect(e.x, e.y, e.width, e.height);
+                    ctx.fillStyle = 'white';
+                    ctx.font = '14px Courier New';
+                    ctx.fillText(e.meme, e.x + 5, e.y + 20);
+                    
+                    // Collision
+                    if (e.y + e.height > player.y && 
+                        e.x + e.width > player.x && 
+                        e.x < player.x + player.width) {
+                        enemies.splice(i, 1);
+                        score++;
+                        document.getElementById('game-score').textContent = `SCORE: ${score}`;
+                        addMessage(`🔥 DEFENDED: ${e.meme} (SCORE: ${score})`, "system");
+                    }
+                    
+                    // Remove if off screen
+                    if (e.y > canvas.height) {
+                        enemies.splice(i, 1);
+                        addMessage(`💥 MISSED: ${e.meme}`, "system");
+                    }
+                }
+                
+                drawPlayer();
+                requestAnimationFrame(gameLoop);
+            }
+            
+            function closeGame() {
+                gameRunning = false;
+                game.style.display = 'none';
+                addMessage(`🎮 GAME OVER! FINAL SCORE: ${score}`, "system");
+                document.getElementById('user-input').focus();
+            }
+            
+            addMessage("🎮 SECRET GAME STARTED! USE ARROW KEYS TO DEFEND AGAINST CRINGE MEMES!", "system");
+            gameLoop();
+        }
+        
+        // === MEME STORM ===
+        function memeStorm() {
+            document.getElementById('start-menu').style.display = 'none';
+            const storm = document.createElement('div');
+            storm.style.position = 'fixed';
+            storm.style.top = '0';
+            storm.style.left = '0';
+            storm.style.width = '100%';
+            storm.style.height = '100%';
+            storm.style.background = 'rgba(0,0,0,0.8)';
+            storm.style.zIndex = '10002';
+            storm.style.overflow = 'hidden';
+            document.body.appendChild(storm);
+            
+            const memes = [
+                "( ͡° ͜ʖ ͡°)", "¯\\_(ツ)_/¯", "(╯°□°）╯︵ ┻━┻", 
+                "༼ つ ◕_◕ ༽つ", "(•̀ᴗ•́)و", "ಠ_ಠ", "(ง •̀_•́)ง",
+                "┬─┬ノ( º _ ºノ)", "٩(◕‿◕｡)۶", "(ﾉ◕ヮ◕)ﾉ*:･ﾟ✧"
+            ];
+            
+            let count = 0;
+            const interval = setInterval(() => {
+                if (count++ > 50) {
+                    clearInterval(interval);
+                    storm.remove();
+                    addMessage("🌪️ MEME STORM COMPLETE! YOUR BRAIN IS NOW 69% MORE ROTTEN!", "system");
+                    return;
+                }
+                
+                const meme = document.createElement('div');
+                meme.className = 'meme';
+                meme.textContent = memes[Math.floor(Math.random() * memes.length)];
+                meme.style.left = Math.random() * 100 + '%';
+                meme.style.top = '100vh';
+                meme.style.color = `hsl(${Math.random() * 360}, 100%, 50%)`;
+                meme.style.fontSize = (20 + Math.random() * 30) + 'px';
+                storm.appendChild(meme);
+                
+                // Remove meme after animation
+                setTimeout(() => {
+                    meme.remove();
+                }, 5000);
+            }, 100);
+            
+            addMessage("🌪️ INITIATING MEME STORM PROTOCOL...", "system");
+        }
+        
+        // === SYSTEM CRASH ===
+        function throwError() {
+            document.getElementById('start-menu').style.display = 'none';
+            addMessage("⚠️ CRITICAL ERROR: RECYCLE BIN OVERFLOW!", "system");
+            setTimeout(() => {
+                document.body.innerHTML = `
+                    <div style="position:fixed; top:0; left:0; width:100%; height:100%; background:black; color:red; display:flex; justify-content:center; align-items:center; font-size:24px; text-align:center; font-family:'Courier New'">
+                        <div>
+                            SYSTEM CRASH!<br><br>
+                            ERROR CODE: BRAINROT_OVERFLOW<br><br>
+                            PRESS F5 TO RESTORE<br><br>
+                            <span style="font-size:14px">(don't worry, this is part of the experience)</span>
+                        </div>
+                    </div>
+                `;
+            }, 2000);
+        }
+        
+        // === REVEAL EASTER EGG ===
+        function revealEasterEgg() {
+            const egg = document.createElement('div');
+            egg.style.position = 'fixed';
+            egg.style.top = '50%';
+            egg.style.left = '50%';
+            egg.style.transform = 'translate(-50%, -50%)';
+            egg.style.background = 'black';
+            egg.style.border = '2px solid lime';
+            egg.style.padding = '20px';
+            egg.style.zIndex = '10003';
+            egg.style.color = 'lime';
+            egg.style.fontFamily = "'Courier New'";
+            egg.style.textAlign = 'center';
+            egg.style.maxWidth = '80%';
+            
+            egg.innerHTML = `
+                <h1 style="color:cyan;">SECRET COMMANDS UNLOCKED</h1>
+                <p>DOUBLE-CLICK THESE ICONS:</p>
+                <ul style="text-align:left; color:lime;">
+                    <li>🖥️ MY COMPUTER: Secret Meme Defender Game</li>
+                    <li>🗑️ RECYCLE BIN: Fake System Crash (for fun)</li>
+                    <li>🤖 BRAINROT.EXE: Meme Storm Animation</li>
+                </ul>
+                <p>CLICK ANY ICON 7 TIMES: SURPRISE</p>
+                <button onclick="this.parentNode.remove()" style="background:black; color:lime; border:1px solid lime; padding:5px 10px; margin-top:10px; cursor:pointer;">CLOSE</button>
+            `;
+            
+            document.body.appendChild(egg);
+        }
+
+        // === ICON FUNCTIONS ===
+        function openMyComputer() {
+            document.getElementById('start-menu').style.display = 'none';
+            addMessage("💻 SYSTEM: MY COMPUTER OPENED (DOUBLE-CLICK FOR SECRET GAME)", "system");
+        }
+        
+        function openRecycleBin() {
+            document.getElementById('start-menu').style.display = 'none';
+            addMessage("🗑️ SYSTEM: RECYCLE BIN EMPTY (DOUBLE-CLICK AT YOUR OWN RISK)", "system");
+        }
+
+        // === MESSAGE FUNCTIONS ===
+        function addMessage(text, type = "bot") {
+            const chat = document.getElementById("bot-messages");
+            const msg = document.createElement("div");
+            
+            switch(type) {
+                case "bot":
+                    msg.className = "bot-message";
+                    msg.innerHTML = "🤖: " + text;
+                    break;
+                case "user":
+                    msg.className = "user-message";
+                    msg.textContent = "👤: " + text;
+                    break;
+                case "system":
+                    msg.className = "system-message";
+                    msg.innerHTML = "⚠️: " + text;
+                    break;
+            }
+            
+            chat.appendChild(msg);
+            chat.scrollTop = chat.scrollHeight;
+        }
+
+        function showTypingIndicator() {
+            const chat = document.getElementById("bot-messages");
+            const indicator = document.createElement("div");
+            indicator.className = "typing-indicator";
+            indicator.id = "typing-indicator";
+            indicator.textContent = "🤖 is typing...";
+            chat.appendChild(indicator);
+            chat.scrollTop = chat.scrollHeight;
+        }
+
+        function hideTypingIndicator() {
+            const indicator = document.getElementById("typing-indicator");
+            if (indicator) indicator.remove();
+        }
+
+        // === VIRUS TAKEOVER SEQUENCE ===
+        function startBrainrot() {
+            document.getElementById('start-menu').style.display = 'none';
+            const overlay = document.getElementById("virus-overlay");
+            overlay.style.display = "block";
+            
+            // Reset chat
+            document.getElementById("bot-messages").innerHTML = "";
+            document.getElementById("typed-text").textContent = "";
+            document.getElementById("bot-window").style.display = "none";
+            
+            startVirusTakeover();
+        }
+
+        function startVirusTakeover() {
+            let currentMessage = 0;
+            let currentChar = 0;
+            const typedText = document.getElementById("typed-text");
+
+            function typeVirusMessage() {
+                if (currentMessage < virusMessages.length) {
+                    const message = virusMessages[currentMessage];
+                    
+                    if (currentChar < message.length) {
+                        typedText.textContent += message.charAt(currentChar);
+                        currentChar++;
+                        setTimeout(typeVirusMessage, 30 + Math.random() * 40);
+                    } else {
+                        typedText.innerHTML += "<br><br>";
+                        currentMessage++;
+                        currentChar = 0;
+                        setTimeout(typeVirusMessage, 800 + Math.random() * 500);
+                    }
+                } else {
+                    setTimeout(showBot, 2000);
+                }
+            }
+
+            function showBot() {
+                const botWindow = document.getElementById("bot-window");
+                botWindow.style.display = "block";
+                addMessage("CONNECTION ESTABLISHED. WELCOME TO BRAINROT.EXE", "bot");
+                document.getElementById("user-input").focus();
+            }
+
+            typeVirusMessage();
+        }
+
+        // === MESSAGE HANDLING ===
+        document.getElementById("user-input").addEventListener("keypress", function(e) {
+            if (e.key === "Enter") {
+                const input = document.getElementById("user-input");
+                const text = input.value.trim();
+                
+                if (text !== "") {
+                    addMessage(text, "user");
+                    getAIResponse(text);
+                    input.value = "";
+                    
+                    // Auto-focus input
+                    setTimeout(() => input.focus(), 50);
+                }
+            }
+        });
+
+        // === RAPID CLICK EASTER EGG ===
+        let clickCount = 0;
+        document.querySelectorAll('.desktop-icon').forEach(icon => {
+            icon.addEventListener('click', () => {
+                clickCount++;
+                if (clickCount === 7) {
+                    addMessage("(╯°□°）╯︵ ┻━┻ WHOA! YOU FOUND THE 7-CLICK SECRET!", "system");
+                    memeStorm();
+                    clickCount = 0;
+                }
+            });
+        });
+    </script>
+</body>
+</html>
