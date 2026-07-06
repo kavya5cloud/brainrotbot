@@ -128,24 +128,6 @@ BrAinRotBot is perfect for:
 
 ---
 
-## Project Structure
-
-```
-BrAinRotBot/
-├── assets/
-│   ├── audio/
-│   ├── icons/
-│   ├── images/
-│   └── fonts/
-├── css/
-├── js/
-├── components/
-├── index.html
-├── README.md
-└── LICENSE
-```
-
----
 
 ## Getting Started
 
